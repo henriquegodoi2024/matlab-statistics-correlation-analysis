@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Godoi</title>
+<meta name="generator" content="MATLAB 24.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2026-03-13">
+<meta name="DC.source" content="Godoi.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<pre class="codeinput">
+<span class="comment">% Problem 1 -&gt; Column vector with 100 randonmly distributed numbers</span>
+<span class="comment">% and standard deviation of 3 and mean of 3</span>
+
+X = 3 * randn(100,1) + 3;
+
+    <span class="comment">% Create Y variables</span>
+
+Y1 = 3*X + 2*randn(length(X),1);
+Y2 = -3*X + 2*randn(length(X),1);
+Y3 = 4 + 2*randn(length(X),1);
+
+    fprintf(<span class="string">'--- Display size of Y and X variables ---\n'</span>);
+
+fprintf(<span class="string">'Size of X:  [%d, %d]\n'</span>, size(X, 1), size(X, 2));
+fprintf(<span class="string">'Size of Y1: [%d, %d]\n'</span>, size(Y1, 1), size(Y1, 2));
+fprintf(<span class="string">'Size of Y2: [%d, %d]\n'</span>, size(Y2, 1), size(Y2, 2));
+fprintf(<span class="string">'Size of Y3: [%d, %d]\n\n'</span>, size(Y3, 1), size(Y3, 2));
+
+<span class="comment">% Problem 2 -&gt; Function for mean and variance when an array is</span>
+<span class="comment">% given for input</span>
+
+<span class="keyword">function</span> v = myVariance(x)
+    <span class="comment">% Ensure x is a column vector</span>
+    x = x(:);
+
+    <span class="comment">% Number of elements</span>
+    n = length(x);
+
+    <span class="comment">% Mean</span>
+    xbar = sum(x) / n;
+
+    <span class="comment">% Variance</span>
+    v = sum((x - xbar).^2) / (n - 1);
+
+<span class="keyword">end</span>
+
+fprintf(<span class="string">'--- Display mean and variance of Y variables ---\n'</span>);
+
+    fprintf(<span class="string">'\ny1: Mean = %.4f, Variance = %.4f'</span>, mean(Y1), myVariance(Y1));
+    fprintf(<span class="string">'\ny2: Mean = %.4f, Variance = %.4f'</span>, mean(Y2), myVariance(Y2));
+    fprintf(<span class="string">'\ny3: Mean = %.4f, Variance = %.4f\n'</span>, mean(Y3), myVariance(Y3));
+
+
+fprintf(<span class="string">'--- Display mean and variance of Y variables using built in functions ---\n'</span>);
+
+     <span class="comment">% Mean</span>
+    disp([<span class="string">'Y1: '</span>, num2str(mean(Y1))])
+    disp([<span class="string">'Y2: '</span>, num2str(mean(Y2))])
+    disp([<span class="string">'Y3: '</span>, num2str(mean(Y3))])
+
+    <span class="comment">% Variance</span>
+    disp([<span class="string">'Y1: '</span>, num2str(var(Y1))])
+    disp([<span class="string">'Y2: '</span>, num2str(var(Y2))])
+    disp([<span class="string">'Y3: '</span>, num2str(var(Y3))])
+
+
+
+<span class="comment">% Problem 3 -&gt; Both variance and covariance measure dispersion. However, variance does</span>
+<span class="comment">% it for one variable while covariance measures it for two</span>
+
+<span class="comment">% Problem 4 -&gt; Graph of the Y variables versus X</span>
+
+    <span class="comment">% Subplot Y1</span>
+
+subplot(1,3,1)
+scatter(X, Y1, <span class="string">'b'</span>, <span class="string">'filled'</span>)
+title(<span class="string">'X vs Y1'</span>)
+xlabel(<span class="string">'Firing Rate X'</span>); ylabel(<span class="string">'Firing Rate Y1'</span>)
+grid <span class="string">on</span>
+legend(<span class="string">'Neuron Y1'</span>)
+
+    <span class="comment">% Subplot Y2</span>
+
+subplot(1,3,2)
+scatter(X, Y2, <span class="string">'r'</span>, <span class="string">'filled'</span>)
+title(<span class="string">'X vs Y2'</span>)
+xlabel(<span class="string">'Firing Rate X'</span>); ylabel(<span class="string">'Firing Rate Y2'</span>)
+grid <span class="string">on</span>
+legend(<span class="string">'Neuron Y2'</span>)
+
+    <span class="comment">% Subplot Y3</span>
+
+subplot(1,3,3)
+scatter(X, Y3, <span class="string">'g'</span>, <span class="string">'filled'</span>)
+title(<span class="string">'X vs Y3'</span>)
+xlabel(<span class="string">'Firing Rate X'</span>); ylabel(<span class="string">'Firing Rate Y3'</span>)
+grid <span class="string">on</span>
+legend(<span class="string">'Neuron Y3'</span>)
+
+
+<span class="comment">% Problem 5 -&gt; Calculating covariance</span>
+
+    <span class="comment">% Problem 5a -&gt; Function to calculate covariance for variables X and Y</span>
+
+<span class="keyword">function</span> cov_val = myCovariance(X, Y)
+
+    n = length(X);
+    mX = sum(X)/n;
+    mY = sum(Y)/n;
+    cov_val = sum((X - mX) .* (Y - mY)) / (n - 1);
+<span class="keyword">end</span>
+
+    <span class="comment">% Problem 5b -&gt; Using above function to compare Covariance of X with Y1, Y2, Y3</span>
+
+cv1 = myCovariance(X, Y1);
+cv2 = myCovariance(X, Y2);
+cv3 = myCovariance(X, Y3);
+
+fprintf(<span class="string">'Covariance X &amp; Y1: %.4f\n'</span>, cv1);
+fprintf(<span class="string">'Covariance X &amp; Y2: %.4f\n'</span>, cv2);
+fprintf(<span class="string">'Covariance X &amp; Y3: %.4f\n'</span>, cv3);
+
+    <span class="comment">% Problem 5c -&gt; Verification for Covariance</span>
+
+    mat_cov_matrix = cov(X, Y1);
+    fprintf(<span class="string">'MATLAB Covariance Verification (Y1): %.4f\n'</span>, mat_cov_matrix(1,2));
+
+    mat_cov_matrix = cov(X,Y2);
+    fprintf(<span class="string">'MATLAB Covariance Verification (Y2): %.4f\n'</span>, mat_cov_matrix(1,2));
+
+    mat_cov_matrix = cov(X,Y3);
+    fprintf(<span class="string">'MATLAB Covariance Verification (Y3): %.4f\n'</span>, mat_cov_matrix(1,2));
+
+
+fprintf(<span class="string">'---Built in function and our function return the same result---\n'</span>);
+
+<span class="comment">% Problem 6 -&gt; Function to calculate correlation between X and Y</span>
+
+r_XY1 = myCorrelation(X, Y1);
+r_XY2 = myCorrelation(X, Y2);
+r_XY3 = myCorrelation(X, Y3);
+
+fprintf(<span class="string">'Correlation X &amp; Y1: %.4f\n'</span>, r_XY1);
+fprintf(<span class="string">'Correlation X &amp; Y2: %.4f\n'</span>, r_XY2);
+fprintf(<span class="string">'Correlation X &amp; Y3: %.4f\n'</span>, r_XY3);
+
+mat_matrix = corrcoef(X, Y1);
+fprintf(<span class="string">'MATLAB Verification (Y1): %.4f\n'</span>, mat_matrix(1,2));
+
+mat_matrix = corrcoef(X, Y2);
+fprintf(<span class="string">'MATLAB Verification (Y2): %.4f\n'</span>, mat_matrix(1,2));
+
+mat_matrix = corrcoef(X, Y3);
+fprintf(<span class="string">'MATLAB Verification (Y3s): %.4f\n'</span>, mat_matrix(1,2));
+
+<span class="keyword">function</span> r = myCorrelation(X, Y)
+    n = length(X);
+    cov_val = sum((X - mean(X)) .* (Y - mean(Y))) / (n - 1);
+
+    std_X = sqrt(sum((X - mean(X)).^2) / (n - 1));
+    std_Y = sqrt(sum((Y - mean(Y)).^2) / (n - 1));
+
+    r = cov_val / (std_X * std_Y);
+<span class="keyword">end</span>
+
+<span class="comment">% Project done with Manuel Palmieri and Henrique Godoi</span>
+</pre>
+<pre class="codeoutput">--- Display size of Y and X variables ---
+Size of X:  [100, 1]
+Size of Y1: [100, 1]
+Size of Y2: [100, 1]
+Size of Y3: [100, 1]
+
+--- Display mean and variance of Y variables ---
+
+y1: Mean = 8.5779, Variance = 67.7808
+y2: Mean = -8.5800, Variance = 72.4948
+y3: Mean = 4.1968, Variance = 3.2329
+--- Display mean and variance of Y variables using built in functions ---
+Y1: 8.5779
+Y2: -8.58
+Y3: 4.1968
+Y1: 67.7808
+Y2: 72.4948
+Y3: 3.2329
+Covariance X &amp; Y1: 21.7788
+Covariance X &amp; Y2: -22.4237
+Covariance X &amp; Y3: 0.1961
+MATLAB Covariance Verification (Y1): 21.7788
+MATLAB Covariance Verification (Y2): -22.4237
+MATLAB Covariance Verification (Y3): 0.1961
+---Built in function and our function return the same result---
+Correlation X &amp; Y1: 0.9750
+Correlation X &amp; Y2: -0.9707
+Correlation X &amp; Y3: 0.0402
+MATLAB Verification (Y1): 0.9750
+MATLAB Verification (Y2): -0.9707
+MATLAB Verification (Y3s): 0.0402
+</pre>
+<img vspace="5" hspace="5" src="Godoi_01.png" alt=""> <p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2024b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+
+% Problem 1 -> Column vector with 100 randonmly distributed numbers
+% and standard deviation of 3 and mean of 3
+
+X = 3 * randn(100,1) + 3;
+
+    % Create Y variables
+
+Y1 = 3*X + 2*randn(length(X),1);
+Y2 = -3*X + 2*randn(length(X),1);
+Y3 = 4 + 2*randn(length(X),1);
+
+    fprintf('REPLACE_WITH_DASH_DASH- Display size of Y and X variables REPLACE_WITH_DASH_DASH-\n');
+
+fprintf('Size of X:  [%d, %d]\n', size(X, 1), size(X, 2));
+fprintf('Size of Y1: [%d, %d]\n', size(Y1, 1), size(Y1, 2));
+fprintf('Size of Y2: [%d, %d]\n', size(Y2, 1), size(Y2, 2));
+fprintf('Size of Y3: [%d, %d]\n\n', size(Y3, 1), size(Y3, 2));
+
+% Problem 2 -> Function for mean and variance when an array is 
+% given for input
+
+function v = myVariance(x)
+    % Ensure x is a column vector
+    x = x(:);
+    
+    % Number of elements
+    n = length(x);
+    
+    % Mean
+    xbar = sum(x) / n;
+    
+    % Variance
+    v = sum((x - xbar).^2) / (n - 1);
+   
+end
+
+fprintf('REPLACE_WITH_DASH_DASH- Display mean and variance of Y variables REPLACE_WITH_DASH_DASH-\n');
+
+    fprintf('\ny1: Mean = %.4f, Variance = %.4f', mean(Y1), myVariance(Y1));
+    fprintf('\ny2: Mean = %.4f, Variance = %.4f', mean(Y2), myVariance(Y2));
+    fprintf('\ny3: Mean = %.4f, Variance = %.4f\n', mean(Y3), myVariance(Y3));
+
+
+fprintf('REPLACE_WITH_DASH_DASH- Display mean and variance of Y variables using built in functions REPLACE_WITH_DASH_DASH-\n');
+
+     % Mean
+    disp(['Y1: ', num2str(mean(Y1))])
+    disp(['Y2: ', num2str(mean(Y2))])
+    disp(['Y3: ', num2str(mean(Y3))])
+    
+    % Variance
+    disp(['Y1: ', num2str(var(Y1))])
+    disp(['Y2: ', num2str(var(Y2))])
+    disp(['Y3: ', num2str(var(Y3))])
+
+
+
+% Problem 3 -> Both variance and covariance measure dispersion. However, variance does
+% it for one variable while covariance measures it for two
+
+% Problem 4 -> Graph of the Y variables versus X
+
+    % Subplot Y1
+
+subplot(1,3,1)
+scatter(X, Y1, 'b', 'filled')
+title('X vs Y1')
+xlabel('Firing Rate X'); ylabel('Firing Rate Y1')
+grid on
+legend('Neuron Y1')
+
+    % Subplot Y2
+
+subplot(1,3,2)
+scatter(X, Y2, 'r', 'filled')
+title('X vs Y2')
+xlabel('Firing Rate X'); ylabel('Firing Rate Y2')
+grid on
+legend('Neuron Y2')
+
+    % Subplot Y3
+
+subplot(1,3,3)
+scatter(X, Y3, 'g', 'filled')
+title('X vs Y3')
+xlabel('Firing Rate X'); ylabel('Firing Rate Y3')
+grid on
+legend('Neuron Y3')
+
+
+% Problem 5 -> Calculating covariance
+
+    % Problem 5a -> Function to calculate covariance for variables X and Y
+
+function cov_val = myCovariance(X, Y)
+    
+    n = length(X);
+    mX = sum(X)/n;
+    mY = sum(Y)/n;
+    cov_val = sum((X - mX) .* (Y - mY)) / (n - 1);
+end
+
+    % Problem 5b -> Using above function to compare Covariance of X with Y1, Y2, Y3
+
+cv1 = myCovariance(X, Y1);
+cv2 = myCovariance(X, Y2);
+cv3 = myCovariance(X, Y3);
+
+fprintf('Covariance X & Y1: %.4f\n', cv1);
+fprintf('Covariance X & Y2: %.4f\n', cv2);
+fprintf('Covariance X & Y3: %.4f\n', cv3);
+
+    % Problem 5c -> Verification for Covariance
+
+    mat_cov_matrix = cov(X, Y1);
+    fprintf('MATLAB Covariance Verification (Y1): %.4f\n', mat_cov_matrix(1,2));
+    
+    mat_cov_matrix = cov(X,Y2);
+    fprintf('MATLAB Covariance Verification (Y2): %.4f\n', mat_cov_matrix(1,2));
+    
+    mat_cov_matrix = cov(X,Y3);
+    fprintf('MATLAB Covariance Verification (Y3): %.4f\n', mat_cov_matrix(1,2));
+
+
+fprintf('REPLACE_WITH_DASH_DASH-Built in function and our function return the same resultREPLACE_WITH_DASH_DASH-\n');
+
+% Problem 6 -> Function to calculate correlation between X and Y
+
+r_XY1 = myCorrelation(X, Y1);
+r_XY2 = myCorrelation(X, Y2);
+r_XY3 = myCorrelation(X, Y3);
+
+fprintf('Correlation X & Y1: %.4f\n', r_XY1);
+fprintf('Correlation X & Y2: %.4f\n', r_XY2);
+fprintf('Correlation X & Y3: %.4f\n', r_XY3);
+
+mat_matrix = corrcoef(X, Y1);
+fprintf('MATLAB Verification (Y1): %.4f\n', mat_matrix(1,2));
+
+mat_matrix = corrcoef(X, Y2);
+fprintf('MATLAB Verification (Y2): %.4f\n', mat_matrix(1,2));
+
+mat_matrix = corrcoef(X, Y3);
+fprintf('MATLAB Verification (Y3s): %.4f\n', mat_matrix(1,2));
+
+function r = myCorrelation(X, Y)
+    n = length(X);
+    cov_val = sum((X - mean(X)) .* (Y - mean(Y))) / (n - 1);
+
+    std_X = sqrt(sum((X - mean(X)).^2) / (n - 1));
+    std_Y = sqrt(sum((Y - mean(Y)).^2) / (n - 1));
+  
+    r = cov_val / (std_X * std_Y);
+end
+
+% Project done with Manuel Palmieri and Henrique Godoi
+##### SOURCE END #####
+-->
+</body>
+</html>
