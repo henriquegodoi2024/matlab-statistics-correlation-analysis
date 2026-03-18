@@ -28,7 +28,7 @@ A base firing rate variable `X` is generated as 100 randomly distributed values 
 
 The script produces a 3-panel figure showing each neuron's firing rate plotted against X:
 
-![X vs Y1, Y2, Y3](Godoi_01.png)
+![X vs Y1, Y2, Y3]
 
 - **Y1 (blue)** — tight upward slope, strong positive linear relationship
 - **Y2 (red)** — tight downward slope, strong negative linear relationship
